@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <logger name="com.example" level="WARN"/>
+    <root level="ALL">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{dd-MM-yyyy HH:mm:ss,SSS} %-5p &lt;%t&gt; -- [%c] %m%n</pattern>
+            </encoder>
+        </appender>
+    </root>
+
+
+</configuration>

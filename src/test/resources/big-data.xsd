@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="LivescoreData" type="LivescoreDataType"/>
+    <xs:complexType name="LivescoreDataType">
+        <xs:sequence>
+            <xs:element type="SportType" name="Sport" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MatchType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="MatchDate"/>
+            <xs:element type="Team1Type" name="Team1"/>
+            <xs:element type="Team2Type" name="Team2"/>
+            <xs:element type="StatusType" name="Status"/>
+            <xs:element name="Winner">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="LastGoalType" name="LastGoal" minOccurs="0"/>
+            <xs:element type="xs:string" name="CurrentPeriodStart" minOccurs="0"/>
+            <xs:element name="Scores">
+                <xs:complexType mixed="true">
+                    <xs:sequence>
+                        <xs:element type="ScoreType" name="Score" maxOccurs="unbounded" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Goals">
+                <xs:complexType mixed="true">
+                    <xs:sequence>
+                        <xs:element type="GoalType" name="Goal" maxOccurs="unbounded" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element type="xs:string" name="Cards"/>
+            <xs:element type="xs:string" name="Substitutions"/>
+            <xs:element type="xs:string" name="Lineups"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="MatchId" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="GoalsType">
+        <xs:sequence>
+            <xs:element type="GoalType" name="Goal" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Team2Type">
+        <xs:sequence>
+            <xs:element type="NameType" name="Name" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="TeamId" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="StatusType">
+        <xs:sequence>
+            <xs:element type="NameType" name="Name" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="Code" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="NameType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="language" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="TournamentType">
+        <xs:sequence>
+            <xs:element type="NameType" name="Name" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="MatchType" name="Match" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="TournamentId" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="SportType">
+        <xs:sequence>
+            <xs:element type="NameType" name="Name" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="CategoryType" name="Category" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="SportId" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="Team1Type">
+        <xs:sequence>
+            <xs:element type="NameType" name="Name" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="TeamId" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="ScoresType">
+        <xs:sequence>
+            <xs:element type="ScoreType" name="Score" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CategoryType">
+        <xs:sequence>
+            <xs:element type="NameType" name="Name" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="TournamentType" name="Tournament" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="CategoryId" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="GoalType">
+        <xs:sequence>
+            <xs:element name="Time">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="6"/>
+                        <xs:enumeration value="12"/>
+                        <xs:enumeration value="41"/>
+                        <xs:enumeration value="47"/>
+                        <xs:enumeration value="62"/>
+                        <xs:enumeration value="65"/>
+                        <xs:enumeration value="10"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="7"/>
+                        <xs:enumeration value="14"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Team1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Team2">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="Player"/>
+            <xs:element name="ScoringTeam">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ScoreType">
+        <xs:sequence>
+            <xs:element name="Team1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="6"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="5"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="7"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Team2">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="0"/>
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="4"/>
+                        <xs:enumeration value="3"/>
+                        <xs:enumeration value="2"/>
+                        <xs:enumeration value="6"/>
+                        <xs:enumeration value="5"/>
+                        <xs:enumeration value="7"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="LastGoalType">
+        <xs:sequence>
+            <xs:element name="Time">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="2011-01-04T15:15:03"/>
+                        <xs:enumeration value="2011-01-04T14:39:48"/>
+                        <xs:enumeration value="2011-01-04T15:22:45"/>
+                        <xs:enumeration value="2011-01-04T15:19:42"/>
+                        <xs:enumeration value="2011-01-04T15:22:46"/>
+                        <xs:enumeration value="2011-01-04T15:25:01"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Team">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
